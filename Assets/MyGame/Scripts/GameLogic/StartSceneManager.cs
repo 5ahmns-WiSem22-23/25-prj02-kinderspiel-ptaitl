@@ -1,47 +1,56 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
     bool musicOn = true;
+    static bool firstGame = true;
 
     [SerializeField]
     Animator startSceneAnimator;
+    
+    [SerializeField]
+    Image speakerIcon;
 
     [SerializeField]
-    Image icon;
+    Sprite speakerSprite;
 
     [SerializeField]
-    Sprite speakerIcon;
+    Sprite noSpeakerSprite;
 
-    [SerializeField]
-    Sprite noSpeakerIcon;
-
-    [SerializeField]
-    AudioSource clip;
-
+    AudioSource gameMusic;
+    
     void Start()
     {
+
+        gameMusic = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<AudioSource>();
         // evtl. PlayerPrefs auslesen und musicOn bool setzten
 
         SetIcon();
-        clip.Play();
-        Object.DontDestroyOnLoad(clip.gameObject);
+        if (firstGame)
+        {
+            gameMusic.Play();
+            Object.DontDestroyOnLoad(gameMusic.gameObject);
+            firstGame = false;
+        }
+
     }
 
     void SetIcon()
     {
-        icon.sprite = musicOn ? speakerIcon : noSpeakerIcon;
-    }
-
-    void LoadStartScene(int playerCount)
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        speakerIcon.sprite = musicOn ? speakerSprite : noSpeakerSprite;
     }
 
     void ChangeVolume()
     {
-        clip.volume = musicOn ? 1 : 0;
+        gameMusic.volume = musicOn ? 1 : 0;
+    }
+
+    public void PressPlayerCountButton(int playerCount)
+    {
+        // Player Count als statische Variable setzten und in der GameScene auslesen
+        SceneManager.LoadScene("GameScene");
     }
 
     public void PressVolumeButton()
@@ -64,25 +73,5 @@ public class StartSceneManager : MonoBehaviour
     public void PressBackButton()
     {
         startSceneAnimator.SetTrigger("ToStart");
-    }
-
-    public void PressOnePlayer()
-    {
-        LoadStartScene(1);
-    }
-
-    public void PressTwoPlayer()
-    {
-        LoadStartScene(2);
-    }
-
-    public void PressThreePlayer()
-    {
-        LoadStartScene(4);
-    }
-
-    public void PressFourPlayer()
-    {
-        LoadStartScene(4);
     }
 }
