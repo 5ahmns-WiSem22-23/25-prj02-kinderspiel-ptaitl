@@ -14,7 +14,13 @@ public class GameSceneManager : MonoBehaviour
     }
 
     [SerializeField]
-    Canvas canvas;
+    Canvas gameCanvas;
+
+    [SerializeField]
+    Canvas escCanvas;
+
+    [SerializeField]
+    Canvas gameOverCanvas;
 
     [SerializeField]
     GameObject cursorFollowMonkey;
@@ -31,44 +37,151 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     Sprite yellowMonkeySprite;
 
-    public static int redCount;
-    public static int blueCount;
-    public static int greenCount;
-    public static int yellowCount;
+    public int redCount;
+    public int blueCount;
+    public int greenCount;
+    public int yellowCount;
 
     bool monkeyFollowsCursor;
 
-    MonkeyColor currentColor = MonkeyColor.red;
+    int currentPlayer = 1;
 
     [SerializeField]
     Image cursorFollowImage;
 
-    void Update()
+    [SerializeField]
+    GameObject twoPlayers;
+
+    [SerializeField]
+    GameObject threePlayers;
+
+    [SerializeField]
+    GameObject fourPlayers;
+
+    [SerializeField]
+    GameObject yellowMonkeyCross;
+
+    MonkeyColor currentColor;
+
+    public Text anzeige;
+
+
+    void Start()
     {
-        Vector2 pos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, canvas.worldCamera, out pos);
-        cursorFollowMonkey.transform.position = canvas.transform.TransformPoint(pos);
+        switch (StartSceneManager.currentPlayerCount)
+        {
+            case 2:
+                twoPlayers.SetActive(true);
+                break;
+            case 3:
+                threePlayers.SetActive(true);
+                yellowMonkeyCross.SetActive(true);
+                break;
+            case 4:
+                fourPlayers.SetActive(true);
+                break;
+        }
     }
 
-    void checkForWinner()
+
+    void Update()
+    {
+        anzeige.text = currentPlayer.ToString();
+
+        Vector2 pos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(gameCanvas.transform as RectTransform, Input.mousePosition, gameCanvas.worldCamera, out pos);
+        cursorFollowMonkey.transform.position = gameCanvas.transform.TransformPoint(pos);
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOverCanvas.gameObject.active)
+        {
+            escCanvas.gameObject.SetActive(!escCanvas.gameObject.active);
+        }
+    }
+
+    void CheckForWinner()
     {
         if (redCount > 5 || blueCount > 5 || greenCount > 5 || yellowCount > 5)
         {
-            redCount = blueCount = greenCount = yellowCount = 0;
-            SceneManager.LoadScene("StartScene");
+            string winnerName = "";
+
+            switch (currentColor)
+            {
+                case MonkeyColor.red:
+                    winnerName = "Spieler Eins";
+                    break;
+                case MonkeyColor.blue:
+                    winnerName = StartSceneManager.currentPlayerCount == 2 ? "Spieler Eins" : "Spieler Zwei";
+                    break;
+                case MonkeyColor.green:
+                    winnerName = StartSceneManager.currentPlayerCount == 2 ? "Spieler Zwei" : "Spieler Drei";
+                    break;
+                case MonkeyColor.yellow:
+                    winnerName = StartSceneManager.currentPlayerCount == 2 ? "Spieler Zwei" : "Spieler Vier";
+                    break;
+            }
+
+            gameOverCanvas.gameObject.transform.FindChild("Winner").GetComponent<Text>().text = $"{winnerName} gewinnt";
+            gameOverCanvas.gameObject.SetActive(true);
         }
     }
-    
+
+    void CheckTurn()
+    {
+        if (currentColor == MonkeyColor.red)
+        {
+            currentPlayer = (currentPlayer == 1) ? 2 : currentPlayer;
+        }
+        else if (currentColor == MonkeyColor.blue)
+        {
+            if (currentPlayer == 1 && StartSceneManager.currentPlayerCount == 2)
+            {
+                currentPlayer = 2;
+            }
+            else if (currentPlayer == 2 && StartSceneManager.currentPlayerCount != 2)
+            {
+                currentPlayer = 3;
+            }
+        }
+        else if (currentColor == MonkeyColor.green)
+        {
+            if (currentPlayer == 2 && StartSceneManager.currentPlayerCount == 2)
+            {
+                currentPlayer = 1;
+            }
+            else if (currentPlayer == 3 && StartSceneManager.currentPlayerCount == 4)
+            {
+                currentPlayer = 4;
+            }
+            else if (currentPlayer == 3 && StartSceneManager.currentPlayerCount == 3)
+            {
+                currentPlayer = 1;
+            }
+        }
+        else if (currentColor == MonkeyColor.yellow)
+        {
+            if (currentPlayer == 2 && StartSceneManager.currentPlayerCount == 2)
+            {
+                currentPlayer = 1;
+            }
+            else if (currentPlayer == 4 && StartSceneManager.currentPlayerCount != 2)
+            {
+                currentPlayer = 1;
+            }
+        }
+    }
+
+
     public void PressMonkey(MonkeyButtonHelper helper)
     {
         if (currentColor == helper.monkycolor && !helper.isFilled && monkeyFollowsCursor)
         {
-            cursorFollowImage.color = new Color(255, 255, 255, 0);
+            cursorFollowImage.enabled = false;
             helper.gameObject.GetComponent<Image>().sprite = helper.monkeySprite;
             helper.isFilled = true;
             monkeyFollowsCursor = false;
             helper.AddToMonkeyCount();
-            checkForWinner();
+            CheckForWinner();
+            CheckTurn();
         }
 
     }
@@ -77,7 +190,7 @@ public class GameSceneManager : MonoBehaviour
     {
         if (!monkeyFollowsCursor)
         {
-            currentColor = (MonkeyColor)Random.Range(0, 4);
+            currentColor = (MonkeyColor)Random.Range(0, StartSceneManager.currentPlayerCount == 3 ? 3 : 4);
 
             switch (currentColor)
             {
@@ -95,8 +208,18 @@ public class GameSceneManager : MonoBehaviour
                     break;
             }
 
-            cursorFollowImage.color = new Color(255, 255, 255, 1);
+            cursorFollowImage.enabled = true;
             monkeyFollowsCursor = true;
         }
+    }
+
+    public void PressQuit()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+
+    public void PressCancel(GameObject escCanvas)
+    {
+        escCanvas.SetActive(false);
     }
 }

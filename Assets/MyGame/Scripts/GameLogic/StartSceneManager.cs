@@ -4,8 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
-    bool musicOn = true;
+    static bool musicOn = true;
+
+    // By making the variable static it will not be reset when the scene is reloaded
     static bool firstGame = true;
+
+    public static int currentPlayerCount;
 
     [SerializeField]
     Animator startSceneAnimator;
@@ -23,9 +27,7 @@ public class StartSceneManager : MonoBehaviour
     
     void Start()
     {
-
         gameMusic = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<AudioSource>();
-        // evtl. PlayerPrefs auslesen und musicOn bool setzten
 
         SetIcon();
         if (firstGame)
@@ -49,7 +51,7 @@ public class StartSceneManager : MonoBehaviour
 
     public void PressPlayerCountButton(int playerCount)
     {
-        // Player Count als statische Variable setzten und in der GameScene auslesen
+        currentPlayerCount = playerCount;
         SceneManager.LoadScene("GameScene");
     }
 
@@ -65,13 +67,9 @@ public class StartSceneManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void PressStartButton()
+    public void PressAnimationUIButton(string triggerName)
     {
-        startSceneAnimator.SetTrigger("ToPlayerCount");
+        startSceneAnimator.SetTrigger(triggerName);
     }
 
-    public void PressBackButton()
-    {
-        startSceneAnimator.SetTrigger("ToStart");
-    }
 }

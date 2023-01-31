@@ -5,22 +5,23 @@ public class MonkeyButtonHelper : MonoBehaviour
     public GameSceneManager.MonkeyColor monkycolor;
     public Sprite monkeySprite;
     public bool isFilled;
+    public GameSceneManager gm;
 
     public void AddToMonkeyCount()
     {
         switch (monkycolor)
         {
             case GameSceneManager.MonkeyColor.red:
-                GameSceneManager.redCount++;
+                gm.redCount++;
                 break;
             case GameSceneManager.MonkeyColor.blue:
-                GameSceneManager.blueCount++;
+                gm.blueCount++;
                 break;
             case GameSceneManager.MonkeyColor.green:
-                GameSceneManager.greenCount++;
+                gm.greenCount++;
                 break;
             case GameSceneManager.MonkeyColor.yellow:
-                GameSceneManager.yellowCount++;
+                gm.yellowCount++;
                 break;
         }
     }

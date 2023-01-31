@@ -389,14 +389,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1016948976}
         m_TargetAssemblyTypeName: StartSceneManager, Assembly-CSharp
-        m_MethodName: PressStartButton
-        m_Mode: 1
+        m_MethodName: PressAnimationUIButton
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ToPlayerCount
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &261211896
@@ -450,7 +450,6 @@ GameObject:
   - component: {fileID: 358957931}
   - component: {fileID: 358957930}
   - component: {fileID: 358957934}
-  - component: {fileID: 358957935}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -566,18 +565,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &358957935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358957929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd8bd86fef4e24ba7847882c0deaf59c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &426973659
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,14 +796,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1016948976}
         m_TargetAssemblyTypeName: StartSceneManager, Assembly-CSharp
-        m_MethodName: PressBackButton
-        m_Mode: 1
+        m_MethodName: PressAnimationUIButton
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ToStart
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &443541405
@@ -2269,7 +2256,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.8882697, g: 1, b: 0.57254905, a: 1}
+  m_BackGroundColor: {r: 0.7163312, g: 0.8207547, b: 0.41424885, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
