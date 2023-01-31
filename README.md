@@ -2,6 +2,8 @@
 
 This game was created in the context of the MTIN lessons with Prof. Meerwald-Stadler, Dipl.-Ing. Susanne of the HTL Salzburg. (School year 2022/23)
 
+> **Note:** The finished game can be played [Here!](https://5ahmns-wisem22-23.github.io/25-prj02-kinderspiel-ptaitl/)
+
 ## Assignment
 
 There are three analog games to choose from. One of them is to be recreated in digital form with Unity.
