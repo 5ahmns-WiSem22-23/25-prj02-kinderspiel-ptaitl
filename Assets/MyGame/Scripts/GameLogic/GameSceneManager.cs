@@ -219,6 +219,7 @@ public class GameSceneManager : MonoBehaviour
     {
         if (!monkeyFollowsCursor)
         {
+            // With three players, yellow may not be drawn
             currentColor = (MonkeyColor)Random.Range(0, StartSceneManager.currentPlayerCount == 3 ? 3 : 4);
 
             // The color from the enum is assigned to a sprite
