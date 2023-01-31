@@ -2,35 +2,21 @@
 
 This game was created in the context of the MTIN lessons with Prof. Meerwald-Stadler, Dipl.-Ing. Susanne of the HTL Salzburg. (School year 2022/23)
 
-> **Note:** The finished game can be played [Here!](https://5ahmns-wisem22-23.github.io/25-prj02-kinderspiel-ptaitl/)
-
 ## Assignment
 
-There are three analog games to choose from. One of them is to be recreated in digital form with Unity.
+There are three analog games to choose from. One of them is to be recreated in digital form with Unity. I chose the game _»Affenbande«_.
+
+> **Note:** The finished game can be played [here!](https://5ahmns-wisem22-23.github.io/25-prj02-kinderspiel-ptaitl/)
 
 ## Game Logic
 
-The following game logic results from the additional features:
-
-A car has 60 seconds to pick up as many gifts as possible and bring them to the gift bag. When the time is up, the game is over and it is checked if a new high score has been achieved. Also, the player (the car) has some health. Whenever it passes over a kill zone, it loses health. If all lives are used up, the game is over and it is checked whether a new highscore has been achieved.
+The game logic, which can be seen in the description below, has been entirely built in digital form.
 
 ![Spielbeschreibung](https://user-images.githubusercontent.com/72389299/215900654-5ac38d94-84a2-46c6-870b-40518ed71b24.png)
 
+## Style
 
-## Additional features
-
-Besides the required tasks, I have added the following features:
-
-- Camera Smooth Damping
-- Car Reverse Rotation Adjustment
-- SpeedUp, SlowDown & Death Trap Zones (Zones Controller with Custom Inspector)
-- Timer
-- Healthbar
-- Highscore System
-- Out of bounce effect
-- Music (incl. audiolistener logic across scenes)
-- Snow Particle System
-- Minimap
+Graphically, the game is kept very simple to appeal to the target audience (children up to 6 years). The main colors are green and brown (see screenshot below from the game).
 
 ## User Testing
 
@@ -62,7 +48,7 @@ All sprites are either copyright free or have been modified to the point where t
 
 ## Project configuration
 
-- PC, Mac & Linux Standalone
+- WebGL
 - Unity Editor 2020.3.18f1
 - Visual Studio 17.4.1
 - macOS Ventura 13.0 auf MacBook Pro 15", 2018
