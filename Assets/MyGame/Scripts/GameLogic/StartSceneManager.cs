@@ -4,11 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
+    // By making the variables static they will not be reseted when the scene is reloaded
     static bool musicOn = true;
-
-    // By making the variable static it will not be reset when the scene is reloaded
     static bool firstGame = true;
-
     public static int currentPlayerCount;
 
     [SerializeField]
@@ -27,9 +25,12 @@ public class StartSceneManager : MonoBehaviour
     
     void Start()
     {
+        // Since the gameMusic object is not destroyed when the scene changes, it cannot be included as a reference in the inspector
         gameMusic = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<AudioSource>();
 
         SetIcon();
+
+        // Music should not be restarted when coming back from the GameScene
         if (firstGame)
         {
             gameMusic.Play();
@@ -49,6 +50,7 @@ public class StartSceneManager : MonoBehaviour
         gameMusic.volume = musicOn ? 1 : 0;
     }
 
+    // The number of players is given as a parameter in the inspector
     public void PressPlayerCountButton(int playerCount)
     {
         currentPlayerCount = playerCount;
@@ -67,6 +69,7 @@ public class StartSceneManager : MonoBehaviour
         Application.Quit();
     }
 
+    // The name of the animation trigger is given as a parameter in the inspector
     public void PressAnimationUIButton(string triggerName)
     {
         startSceneAnimator.SetTrigger(triggerName);
