@@ -18,6 +18,9 @@ The game logic, which can be seen in the description below, has been entirely bu
 
 Graphically, the game is kept very simple to appeal to the target audience (children up to 6 years). The main colors are green and brown (see screenshot below from the game).
 
+![Screenshot StartScene](https://user-images.githubusercontent.com/72389299/215901635-15f7b670-a387-4325-b56b-42027662770c.png)
+
+
 ## User Testing
 
 The game was tested by three classmates who each wrote issues. No bugs were found.
