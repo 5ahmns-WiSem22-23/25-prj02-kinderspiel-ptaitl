@@ -14,6 +14,9 @@ The following game logic results from the additional features:
 
 A car has 60 seconds to pick up as many gifts as possible and bring them to the gift bag. When the time is up, the game is over and it is checked if a new high score has been achieved. Also, the player (the car) has some health. Whenever it passes over a kill zone, it loses health. If all lives are used up, the game is over and it is checked whether a new highscore has been achieved.
 
+![Spielbeschreibung](https://user-images.githubusercontent.com/72389299/215900654-5ac38d94-84a2-46c6-870b-40518ed71b24.png)
+
+
 ## Additional features
 
 Besides the required tasks, I have added the following features:
