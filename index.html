@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Affenbande</title>
   </head>
   <body style="text-align: center">
-    <canvas id="unity-canvas" width="1920" height="1080" style="width: 1920px; height: 1080px; background: #231f20"></canvas>
-    <script src="./Build/Build.loader.js"></script>
+    <canvas id="unity-canvas" width=1920 height=1080 style="width: 1920px; height: 1080px; background: #231F20"></canvas>
+    <script src="Build/Affenbande_Taitl.loader.js"></script>
     <script>
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/Build.data.br",
-        frameworkUrl: "Build/Build.framework.js.br",
-        codeUrl: "Build/Build.wasm.br",
+        dataUrl: "Build/Affenbande_Taitl.data",
+        frameworkUrl: "Build/Affenbande_Taitl.framework.js",
+        codeUrl: "Build/Affenbande_Taitl.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "PeterTaitl",
         productName: "Affenbande",
