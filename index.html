@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="de">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Affenbande</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Affenbande Taitl</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #wrapper {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+      }
+
+      #unity-canvas {
+        background-color: #231f20;
+        height: calc(100vw / 1.77) !important;
+        width: 100% !important;
+      }
+    </style>
   </head>
-  <body style="text-align: center">
-    <canvas id="unity-canvas" width=1920 height=1080 style="width: 1920px; height: 1080px; background: #231F20"></canvas>
+  <body>
+    <div id="wrapper">
+      <canvas id="unity-canvas"></canvas>
+    </div>
     <script src="Build/Affenbande_Taitl.loader.js"></script>
     <script>
       createUnityInstance(document.querySelector("#unity-canvas"), {
